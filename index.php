@@ -11,6 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Accueil - Votre Plateforme E-commerce</title>
     <!-- Vous pouvez inclure ici des liens vers des fichiers CSS, des scripts, etc. -->
 </head>

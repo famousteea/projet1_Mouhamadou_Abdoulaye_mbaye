@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username_err = 'Veuillez entrer un nom d\'utilisateur.';
     } else {
         // Vérifier si le nom d'utilisateur existe déjà
-        $sql = 'SELECT id FROM users WHERE username = ?';
+        $sql = 'SELECT id FROM user WHERE user_name = ?';
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, 's', $param_username);
             $param_username = trim($_POST['username']);
@@ -63,14 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Vérifier s'il n'y a pas d'erreurs avant d'insérer dans la base de données
     if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
         // Préparer la requête d'insertion
-        $sql = 'INSERT INTO users (username, password, email) VALUES (?, ?, ?)';
+        $sql = 'INSERT INTO user (user_name, pwd, email) VALUES ($username, $password, $email)';
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, 'sss', $param_username, $param_password, $param_email);
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Hashage du mot de passe
             $param_email = $email;
             if (mysqli_stmt_execute($stmt)) {
-                header('location: login.php'); // Rediriger vers la page de connexion après l'inscription réussie
+                header(' login.php'); // Rediriger vers la page de connexion après l'inscription réussie
             } else {
                 echo 'Erreur! Veuillez réessayer plus tard.';
             }

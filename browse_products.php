@@ -21,15 +21,19 @@ $result = mysqli_query($conn, $sql);
             <th>ID du Produit</th>
             <th>Nom du Produit</th>
             <th>Prix du Produit</th>
+            <th>image</th>
         </tr>
         <?php
         // Afficher la liste des produits
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>{$row['product_id']}</td>";
-            echo "<td>{$row['product_name']}</td>";
-            echo "<td>{$row['product_price']}</td>";
-            echo "</tr>";
+            var_dump($row);
+            ?>
+            <tr>
+                <td><?php echo $row['id']?></td>
+                <td><?php echo $row['name']?></td>
+                <td><?php echo $row['product_price']?></td>
+            </tr>
+            <?php
         }
         ?>
     </table>

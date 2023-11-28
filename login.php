@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $_SESSION['username'] = $username;
 
                             // Rediriger vers la page d'accueil ou autre page après la connexion réussie
-                            header('location: home.php');
+                            header('location: index.php');
                         } else {
                             $login_err = 'Nom d\'utilisateur ou mot de passe incorrect.';
                         }

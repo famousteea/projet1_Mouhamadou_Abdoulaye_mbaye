@@ -1,0 +1,60 @@
+/* Reset des styles par défaut du navigateur */
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Choisissez la police que vous préférez */
+    background-color: #000; /* Noir */
+    color: #fff; /* Blanc */
+    line-height: 1.6;
+}
+
+header {
+    background-color: #0074cc; /* Bleu */
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    color: #fff; /* Blanc */
+}
+
+nav {
+    background-color: #333; /* Gris foncé */
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff; /* Blanc */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #0074cc; /* Bleu */
+}
+
+footer {
+    background-color: #333; /* Gris foncé */
+    padding: 10px;
+    text-align: center;
+    color: #fff; /* Blanc */
+}
