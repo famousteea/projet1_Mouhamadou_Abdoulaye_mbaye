@@ -3,8 +3,14 @@
 include('config.php');
 
 // Initialiser les variables
-$username = $password = $confirm_password = $email = '';
-$username_err = $password_err = $confirm_password_err = $email_err = '';
+$username = "";
+$password = "";
+$confirm_password = "";
+$email = "";
+$username_err = "";
+$password_err = "";
+$confirm_password_err = "";
+$email_err = "";
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -63,14 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Vérifier s'il n'y a pas d'erreurs avant d'insérer dans la base de données
     if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
         // Préparer la requête d'insertion
-        $sql = 'INSERT INTO user (user_name, pwd, email) VALUES ($username, $password, $email)';
+        $sql = 'INSERT INTO user (user_name, pwd, email) VALUES (?, ?, ?)';
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, 'sss', $param_username, $param_password, $param_email);
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Hashage du mot de passe
             $param_email = $email;
             if (mysqli_stmt_execute($stmt)) {
-                header(' login.php'); // Rediriger vers la page de connexion après l'inscription réussie
+                // Inscription réussie, rediriger vers la page de connexion
+                header('Location: login.php');
+                exit();
             } else {
                 echo 'Erreur! Veuillez réessayer plus tard.';
             }
@@ -90,7 +98,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <!-- Ajoutez ici vos liens vers les feuilles de style et scripts nécessaires -->
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ecf0f1;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        span {
+            color: #e74c3c;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #bdc3c7;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
